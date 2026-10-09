@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2026 a las 05:00:13
+-- Tiempo de generación: 09-10-2026 a las 20:58:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,6 +32,19 @@ CREATE TABLE `provincias` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `provincias`
+--
+
+INSERT INTO `provincias` (`id`, `nombre`) VALUES
+(1, 'San José'),
+(2, 'Alajuela'),
+(3, 'Cartago'),
+(4, 'Heredia'),
+(5, 'Guanacaste'),
+(6, 'Puntarenas'),
+(7, 'Limón');
+
 -- --------------------------------------------------------
 
 --
@@ -41,7 +54,9 @@ CREATE TABLE `provincias` (
 CREATE TABLE `usuarios` (
   `id` int(8) NOT NULL,
   `username` int(50) NOT NULL,
-  `password` int(250) NOT NULL
+  `password` int(250) NOT NULL,
+  `correo` varchar(50) NOT NULL,
+  `provincia_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -55,6 +70,14 @@ ALTER TABLE `provincias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `password` (`password`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -62,7 +85,7 @@ ALTER TABLE `provincias`
 -- AUTO_INCREMENT de la tabla `provincias`
 --
 ALTER TABLE `provincias`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
