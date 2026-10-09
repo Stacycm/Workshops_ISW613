@@ -8,11 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM usuarios WHERE username = '$username'";
-    $resultado = mysqli_query($conexion, $sql);
+    $sql = "SELECT * FROM usuarios WHERE username = ?";
+    $stmt = mysqli_prepare($conexion, $sql);
 
-    if (mysqli_num_rows($resultado) == 1) {
-        $usuario = mysqli_fetch_assoc($resultado);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    if ($usuario = mysqli_fetch_assoc($resultado)) {
 
         if (password_verify($password, $usuario["password"])) {
             $_SESSION["usuario_id"] = $usuario["id"];
@@ -23,11 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $mensaje = "Contraseña incorrecta";
         }
+
     } else {
         $mensaje = "El usuario no existe";
     }
+
+    mysqli_stmt_close($stmt);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
