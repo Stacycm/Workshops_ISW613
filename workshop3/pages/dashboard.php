@@ -1,73 +1,53 @@
 <?php
-
 require_once __DIR__ . '/../utils/auth.php';
-
 requireLogin();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Dashboard</title>
-
     <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+          href="[maxcdn.bootstrapcdn.com](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)">
+    <link rel="stylesheet" href="/workshop3/assets/css/styles.css">
 </head>
-
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-    <a class="navbar-brand" href="/Workshop3/pages/dashboard.php">
-        Workshop 3
-    </a>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/workshop3/pages/dashboard.php">Workshop 3</a>
     <div class="navbar-nav">
-
-        <a class="nav-item nav-link"
-           href="/workshop3/pages/profile.php">
-            Perfil
-        </a>
-
-        <a class="nav-item nav-link"
-           href="/workshop3/pages/courses.php">
-            Cursos
-        </a>
-
-        <form action="/workshop3/actions/logout.php"
-              method="POST"
-              class="form-inline">
-
-            <button type="submit" class="btn btn-link nav-link">
-                Cerrar sesión
-            </button>
-
+        <a class="nav-item nav-link" href="/workshop3/pages/profile.php">Perfil</a>
+        <a class="nav-item nav-link" href="/workshop3/pages/courses.php">Cursos</a>
+        <form action="/workshop3/actions/logout.php" method="POST" class="form-inline">
+            <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
         </form>
-
     </div>
-
 </nav>
 
-<div class="container mt-5">
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-    <h1>Bienvenido</h1>
+            <div class="card">
+                <div class="card-body p-4">
+                    <h2 class="page-title">Bienvenido</h2>
+                    <p class="mb-1">
+                        Hola,
+                        <strong><?= h($_SESSION['name'] ?? $_SESSION['username'] ?? 'Usuario') ?></strong>.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Desde aquí puedes acceder a tus cursos.
+                    </p>
+                    <a href="/workshop3/pages/courses.php" class="btn btn-primary">
+                        Ver Cursos
+                    </a>
+                </div>
+            </div>
 
-    <p>
-        Hola,
-        <?php echo htmlspecialchars($_SESSION['name']); ?>.
-    </p>
-
-    <p>
-        Desde aquí puedes acceder a tus cursos.
-    </p>
-
+        </div>
+    </div>
 </div>
 
 </body>
-
 </html>
