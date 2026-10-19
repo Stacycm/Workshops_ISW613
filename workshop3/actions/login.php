@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once __DIR__ . '/../utils/database.php';
@@ -11,42 +10,29 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
-$name = trim($_POST['name'] ?? '');
 
-if ($username === '' || $password === '' || $name === '') {
+if ($username === '' || $password === '') {
     header('Location: /workshop3/index.php?error=empty');
     exit;
 }
 
-// Generar el hash de la contraseña
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-// Verificar si el usuario ya existe
 $stmt = $conn->prepare(
-    "SELECT id FROM users WHERE username = ?"
+    "SELECT id, username, name, password FROM users WHERE username = ? LIMIT 1"
 );
 $stmt->bind_param("s", $username);
 $stmt->execute();
+$user = $stmt->get_result()->fetch_assoc();
 
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
-    header('Location: /workshop3/index.php?error=exists');
+if (!$user || !password_verify($password, $user['password'])) {
+    header('Location: /workshop3/index.php?error=credentials');
     exit;
 }
 
-// Registrar el usuario con la contraseña hasheada
-$stmt = $conn->prepare(
-    "INSERT INTO users (username, password, name)
-     VALUES (?, ?, ?)"
-);
+session_regenerate_id(true);
 
-$stmt->bind_param("sss", $username, $passwordHash, $name);
+$_SESSION['user_id']  = (int)$user['id'];
+$_SESSION['username'] = $user['username'];
+$_SESSION['name']     = $user['name'];
 
-if ($stmt->execute()) {
-    header('Location: /workshop3/index.php?success=registered');
-    exit;
-}
-
-header('Location: /workshop3/index.php?error=register');
+header('Location: /workshop3/pages/dashboard.php');
 exit;
