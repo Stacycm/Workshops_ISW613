@@ -4,7 +4,7 @@ require_once __DIR__ . '/../utils/database.php';
 requireLogin();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /workshop3/pages/courses.php');
+    header('Location: /pages/courses.php');
     exit;
 }
 verifyCsrf();
@@ -54,7 +54,7 @@ if ($errores) {
         'creditos'     => $creditos,
         'descripcion'  => $descripcion,
     ];
-    header('Location: /workshop3/pages/course_form.php?id=' . $id);
+    header('Location: /pages/course_form.php?id=' . $id);
     exit;
 }
 
@@ -68,5 +68,5 @@ $stmt->bind_param("ssiisi", $nombre, $codigo, $carreraId,
                   $creditos, $descripcion, $id);
 $stmt->execute();
 
-header('Location: /workshop3/pages/courses.php?ok=updated');
+header('Location: /pages/courses.php?ok=updated');
 exit;

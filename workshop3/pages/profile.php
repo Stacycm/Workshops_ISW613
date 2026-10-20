@@ -16,16 +16,16 @@ $user = $stmt->get_result()->fetch_assoc();
     <title>Mi Perfil</title>
     <link rel="stylesheet"
           href="[maxcdn.bootstrapcdn.com](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)">
-    <link rel="stylesheet" href="/workshop3/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/workshop3/pages/dashboard.php">Workshop 3</a>
+    <a class="navbar-brand" href="/pages/dashboard.php">Workshop 3</a>
     <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/workshop3/pages/profile.php">Perfil</a>
-        <a class="nav-item nav-link" href="/workshop3/pages/courses.php">Cursos</a>
-        <form action="/workshop3/actions/logout.php" method="POST" class="form-inline">
+        <a class="nav-item nav-link" href="/pages/profile.php">Perfil</a>
+        <a class="nav-item nav-link" href="/pages/courses.php">Cursos</a>
+        <form action="/actions/logout.php" method="POST" class="form-inline">
             <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
         </form>
     </div>
@@ -52,7 +52,7 @@ $user = $stmt->get_result()->fetch_assoc();
                 </div>
             </div>
 
-            <a href="/workshop3/pages/courses.php"
+            <a href="/pages/courses.php"
                class="btn btn-secondary mt-3">Volver a Cursos</a>
 
         </div>

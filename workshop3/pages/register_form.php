@@ -9,7 +9,7 @@ require_once __DIR__ . '/../utils/auth.php';
     <title>Registro</title>
     <link rel="stylesheet"
           href="[maxcdn.bootstrapcdn.com](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)">
-    <link rel="stylesheet" href="/workshop3/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body class="auth">
 
@@ -57,7 +57,7 @@ require_once __DIR__ . '/../utils/auth.php';
                     </form>
 
                     <p class="text-center mt-3 mb-0">
-                        <a href="/workshop3/index.php">Volver al login</a>
+                        <a href="/pages/index.php">Volver al login</a>
                     </p>
 
                 </div>

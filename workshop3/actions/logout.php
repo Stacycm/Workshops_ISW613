@@ -2,12 +2,12 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /workshop3/pages/dashboard.php');
+    header('Location: /pages/dashboard.php');
     exit;
 }
 
 $_SESSION = [];
 session_destroy();
 
-header('Location: /workshop3/index.php');
+header('Location: /index.php');
 exit;

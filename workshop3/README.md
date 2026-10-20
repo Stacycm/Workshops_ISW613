@@ -118,7 +118,7 @@ El archivo `workshop3.sql` contiene la estructura de las tablas, sus relaciones 
 7. Abrir el proyecto en el navegador:
 
    - `http://localhost/Workshop3/`
-   - `http://localhost/Workshop3/`
+   - `http://Workshop3.test/`
 
    Si se utiliza un VirtualHost, ingresar mediante el dominio local configurado.
 
@@ -143,6 +143,6 @@ El archivo `workshop3.sql` contiene la estructura de las tablas, sus relaciones 
 
 Para probar la aplicación, se puede utilizar el usuario incluido en la base de datos:
 
-- **Usuario:** `juanita`
+- **Usuario:** `pedritovm`
 - **Contraseña:** `12345`
 

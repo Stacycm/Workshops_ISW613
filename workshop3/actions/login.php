@@ -4,7 +4,7 @@ session_start();
 require_once __DIR__ . '/../utils/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /workshop3/index.php');
+    header('Location: /index.php');
     exit;
 }
 
@@ -12,7 +12,7 @@ $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
 
 if ($username === '' || $password === '') {
-    header('Location: /workshop3/index.php?error=empty');
+    header('Location: /index.php?error=empty');
     exit;
 }
 
@@ -24,7 +24,7 @@ $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 
 if (!$user || !password_verify($password, $user['password'])) {
-    header('Location: /workshop3/index.php?error=credentials');
+    header('Location: /index.php?error=credentials');
     exit;
 }
 
@@ -34,5 +34,5 @@ $_SESSION['user_id']  = (int)$user['id'];
 $_SESSION['username'] = $user['username'];
 $_SESSION['name']     = $user['name'];
 
-header('Location: /workshop3/pages/dashboard.php');
+header('Location: /pages/dashboard.php');
 exit;

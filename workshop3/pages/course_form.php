@@ -25,7 +25,7 @@ if ($editar) {
     $encontrado = $stmt->get_result()->fetch_assoc();
 
     if (!$encontrado) {
-        header('Location: /workshop3/pages/courses.php');
+        header('Location: /pages/courses.php');
         exit;
     }
 
@@ -47,16 +47,16 @@ $carreras = $conn->query(
     <title><?= $editar ? 'Editar Curso' : 'Crear Curso' ?></title>
     <link rel="stylesheet"
           href="[maxcdn.bootstrapcdn.com](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)">
-    <link rel="stylesheet" href="/workshop3/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/workshop3/pages/dashboard.php">Workshop 3</a>
+    <a class="navbar-brand" href="/pages/dashboard.php">Workshop 3</a>
     <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/workshop3/pages/profile.php">Perfil</a>
-        <a class="nav-item nav-link" href="/workshop3/pages/courses.php">Cursos</a>
-        <form action="/workshop3/actions/logout.php" method="POST" class="form-inline">
+        <a class="nav-item nav-link" href="/pages/profile.php">Perfil</a>
+        <a class="nav-item nav-link" href="/pages/courses.php">Cursos</a>
+        <form action="/actions/logout.php" method="POST" class="form-inline">
             <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
         </form>
     </div>
@@ -77,7 +77,7 @@ $carreras = $conn->query(
             <div class="card">
                 <div class="card-body">
 
-                    <form action="/workshop3/actions/<?= $editar ? 'course_edit' : 'course_create' ?>.php"
+                    <form action="/actions/<?= $editar ? 'course_edit' : 'course_create' ?>.php"
                           method="POST">
 
                         <?= csrfField() ?>
@@ -134,7 +134,7 @@ $carreras = $conn->query(
                         <button type="submit" class="btn btn-primary">
                             <?= $editar ? 'Guardar cambios' : 'Crear Curso' ?>
                         </button>
-                        <a href="/workshop3/pages/courses.php"
+                        <a href="/pages/courses.php"
                            class="btn btn-light border">Cancelar</a>
 
                     </form>

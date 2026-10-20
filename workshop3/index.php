@@ -2,7 +2,7 @@
 require_once __DIR__ . '/utils/auth.php';
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: /workshop3/pages/dashboard.php');
+    header('Location: /pages/dashboard.php');
     exit;
 }
 
@@ -22,7 +22,7 @@ $error = $_GET['error'] ?? null;
     <title>Workshop 3</title>
     <link rel="stylesheet"
           href="[maxcdn.bootstrapcdn.com](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)">
-    <link rel="stylesheet" href="/workshop3/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body class="auth">
 
@@ -47,7 +47,7 @@ $error = $_GET['error'] ?? null;
                         <div class="alert alert-danger"><?= h($errores[$error]) ?></div>
                     <?php endif; ?>
 
-                    <form action="/workshop3/actions/login.php" method="POST">
+                    <form action="/actions/login.php" method="POST">
                         <div class="form-group">
                             <label for="username">Usuario</label>
                             <input type="text" class="form-control" id="username"
@@ -67,7 +67,7 @@ $error = $_GET['error'] ?? null;
 
                     <p class="text-center mt-3 mb-0">
                         ¿No tienes cuenta?
-                        <a href="/workshop3/pages/register_form.php">Regístrate</a>
+                        <a href="/pages/register_form.php">Regístrate</a>
                     </p>
 
                 </div>

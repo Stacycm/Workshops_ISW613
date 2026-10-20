@@ -19,16 +19,16 @@ $cursos = $conn->query(
     <title>Cursos</title>
     <link rel="stylesheet"
           href="[maxcdn.bootstrapcdn.com](https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)">
-    <link rel="stylesheet" href="/workshop3/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/workshop3/pages/dashboard.php">Workshop 3</a>
+    <a class="navbar-brand" href="/pages/dashboard.php">Workshop 3</a>
     <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/workshop3/pages/profile.php">Perfil</a>
-        <a class="nav-item nav-link" href="/workshop3/pages/courses.php">Cursos</a>
-        <form action="/workshop3/actions/logout.php" method="POST" class="form-inline">
+        <a class="nav-item nav-link" href="/pages/profile.php">Perfil</a>
+        <a class="nav-item nav-link" href="/pages/courses.php">Cursos</a>
+        <form action="/actions/logout.php" method="POST" class="form-inline">
             <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
         </form>
     </div>
@@ -38,7 +38,7 @@ $cursos = $conn->query(
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="page-title mb-0">Cursos</h2>
-        <a href="/workshop3/pages/course_form.php" class="btn btn-primary">
+        <a href="/pages/course_form.php" class="btn btn-primary">
             + Crear Curso
         </a>
     </div>
@@ -83,10 +83,10 @@ $cursos = $conn->query(
                                 <?= h(mb_strimwidth($c['descripcion'] ?? '', 0, 70, '…')) ?>
                             </td>
                             <td class="text-center text-nowrap">
-                                <a href="/workshop3/pages/course_form.php?id=<?= (int)$c['id'] ?>"
+                                <a href="/pages/course_form.php?id=<?= (int)$c['id'] ?>"
                                    class="btn btn-sm btn-warning">Editar</a>
 
-                                <form action="/workshop3/actions/course_delete.php"
+                                <form action="/actions/course_delete.php"
                                       method="POST" class="d-inline"
                                       onsubmit="return confirm('¿Eliminar este curso?');">
                                     <?= csrfField() ?>
