@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Digital | Workshop5</title>
+    <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="marca">
+            <span class="icono">📚</span>
+            <div>
+                <h2>BookSpace</h2>
+                <p>Biblioteca digital</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="/libros" class="nav-activo">Inicio</a>
+            <a href="/libros/crear">Registrar libro</a>
+        </nav>
+    </header>
+
+    <main class="principal">
+
+        <section class="bienvenida">
+            <div>
+                <span class="etiqueta">TU ESPACIO DE LECTURA</span>
+                <h1>¡Bienvenido a BookSpace!</h1>
+                <p>
+                    Organiza, consulta y administra tu colección
+                    de libros desde un solo lugar.
+                </p>
+
+                <a href="/libros/crear" class="btn btn-principal">
+                    + Agregar un libro
+                </a>
+            </div>
+
+            <div class="ilustracion">
+                📖
+            </div>
+        </section>
+
+        <section class="estadisticas">
+
+            <div class="tarjeta">
+                <span class="tarjeta-icono">📚</span>
+                <div>
+                    <p>Libros registrados</p>
+                    <h2><%= libros.length %></h2>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <span class="tarjeta-icono">✍️</span>
+                <div>
+                    <p>Autores registrados</p>
+                    <h2><%= new Set(libros.map(libro => libro.autor)).size %></h2>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+                <span class="tarjeta-icono">🏷️</span>
+                <div>
+                    <p>Géneros diferentes</p>
+                    <h2><%= new Set(libros.map(libro => libro.genero)).size %></h2>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="seccion-libros">
+
+            <div class="titulo-seccion">
+                <div>
+                    <h2>Mi colección</h2>
+                    <p>Libros disponibles en el sistema</p>
+                </div>
+
+                <a href="/libros/crear" class="btn btn-secundario">
+                    + Nuevo libro
+                </a>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Género</th>
+                            <th>Año</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% if (libros.length > 0) { %>
+
+                            <% libros.forEach(libro => { %>
+                                <tr>
+                                    <td>#<%= libro.id %></td>
+                                    <td class="titulo-libro">
+                                        <%= libro.titulo %>
+                                    </td>
+                                    <td><%= libro.autor %></td>
+                                    <td>
+                                        <span class="genero">
+                                            <%= libro.genero %>
+                                        </span>
+                                    </td>
+                                    <td><%= libro.anio_publicacion %></td>
+
+                                    <td>
+                                        <div class="acciones">
+
+                                            <a
+                                                href="/libros/editar/<%= libro.id %>"
+                                                class="btn btn-editar">
+                                                Editar
+                                            </a>
+
+                                            <form
+                                                action="/libros/<%= libro.id %>?_method=DELETE"
+                                                method="POST"
+                                                onsubmit="return confirm('¿Estás seguro de eliminar este libro?');">
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-eliminar">
+                                                    Eliminar
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }); %>
+
+                        <% } else { %>
+
+                            <tr>
+                                <td colspan="6" class="vacio">
+                                    <span>📖</span>
+                                    <p>Aún no tienes libros registrados.</p>
+                                    <a href="/libros/crear">
+                                        Agrega tu primer libro
+                                    </a>
+                                </td>
+                            </tr>
+
+                        <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>BookSpace © 2026 | Sistema de gestión de libros</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
+

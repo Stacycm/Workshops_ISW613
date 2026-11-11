@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar libro - Workshop5</title>
+    <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <h1>Editar libro</h1>
+
+        <p>Modifica la información del libro seleccionado.</p>
+
+        <form
+            action="/libros/<%= libro.id %>?_method=PUT"
+            method="POST"
+        >
+
+            <div class="campo">
+                <label for="titulo">Título:</label>
+                <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    value="<%= libro.titulo %>"
+                    required
+                >
+            </div>
+
+            <div class="campo">
+                <label for="autor">Autor:</label>
+                <input
+                    type="text"
+                    id="autor"
+                    name="autor"
+                    value="<%= libro.autor %>"
+                    required
+                >
+            </div>
+
+            <div class="campo">
+                <label for="genero">Género:</label>
+                <input
+                    type="text"
+                    id="genero"
+                    name="genero"
+                    value="<%= libro.genero %>"
+                    required
+                >
+            </div>
+
+            <div class="campo">
+                <label for="anio_publicacion">Año de publicación:</label>
+                <input
+                    type="number"
+                    id="anio_publicacion"
+                    name="anio_publicacion"
+                    value="<%= libro.anio_publicacion %>"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn btn-guardar">
+                Actualizar libro
+            </button>
+
+        </form>
+
+        <a href="/libros" class="volver">
+            ← Volver a la lista
+        </a>
+
+    </div>
+
+</body>
+</html>
+
