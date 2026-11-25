@@ -1,69 +1,181 @@
-# CodeIgniter 4 Application Starter
+# Quiz 3 – Sistema de Gestión de Cursos y Matrícula
 
-## What is CodeIgniter?
+## Descripción del proyecto
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Este proyecto consiste en un sistema web desarrollado con **CodeIgniter 4**, utilizando el patrón de arquitectura **MVC (Modelo-Vista-Controlador)**.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+El sistema permite administrar cursos y registrar matrículas de estudiantes. Además, muestra un comprobante con la información de cada matrícula realizada.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Tecnologías utilizadas
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- PHP 8.2
+- CodeIgniter 4.7.6
+- MySQL / MariaDB
+- HTML5
+- CSS3
+- Bootstrap 5.3.3
+- Composer
 
-## Installation & updates
+## Funcionalidades
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### 1. Gestión de cursos (CRUD)
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+El sistema permite:
 
-## Setup
+- Registrar nuevos cursos.
+- Consultar los cursos existentes.
+- Editar la información de un curso.
+- Eliminar cursos.
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+Cada curso contiene los siguientes datos:
 
-## Important Change with index.php
+- Nombre del curso.
+- Código del curso.
+- Cantidad de créditos.
+- Carrera a la que pertenece.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Las carreras se almacenan en la base de datos y se utilizan para relacionarlas con los cursos.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 2. Matrícula de estudiantes
 
-**Please** read the user guide for a better explanation of how CI4 works!
+El sistema permite:
 
-## Repository Management
+- Consultar los cursos disponibles para matrícula.
+- Ingresar el nombre del estudiante.
+- Ingresar el número de identificación.
+- Seleccionar un curso.
+- Registrar la matrícula en la base de datos.
+- Visualizar un comprobante con los datos de la matrícula.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+El comprobante muestra el número de matrícula, los datos del estudiante, el curso seleccionado, la carrera, los créditos y la fecha de registro.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## Estructura del proyecto
 
-## Server Requirements
+El proyecto utiliza la arquitectura MVC de CodeIgniter 4:
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+- **Models:** gestionan la interacción con la base de datos.
+- **Views:** contienen las interfaces que se muestran al usuario.
+- **Controllers:** procesan las solicitudes y conectan los modelos con las vistas.
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Archivos principales:
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+- `app/Controllers/CursoController.php`: controla las operaciones del CRUD de cursos.
+- `app/Controllers/MatriculaController.php`: controla el proceso de matrícula.
+- `app/Models/CarreraModel.php`: administra los datos de las carreras.
+- `app/Models/CursoModel.php`: administra los datos de los cursos.
+- `app/Models/MatriculaModel.php`: administra los registros de matrícula.
+- `app/Views/cursos/`: contiene las vistas del CRUD de cursos.
+- `app/Views/matriculas/`: contiene las vistas del formulario de matrícula y el comprobante.
+- `app/Config/Routes.php`: define las rutas del sistema.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## Base de datos
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+La base de datos utilizada se llama `quiz3` y contiene las siguientes tablas:
+
+| Tabla | Descripción |
+|---|---|
+| `carreras` | Almacena las carreras disponibles. |
+| `cursos` | Almacena los cursos y su relación con las carreras. |
+| `matriculas` | Almacena las matrículas realizadas. |
+
+Se utilizaron migraciones para crear las tablas y seeders para insertar datos iniciales de carreras y cursos.
+
+## Requisitos para ejecutar el proyecto
+
+- PHP 8.2 o superior.
+- Composer.
+- MySQL o MariaDB.
+- Servidor local como XAMPP.
+- Git (opcional, para clonar el repositorio).
+
+## Instalación y ejecución
+
+### 1. Clonar el repositorio
+
+```bash
+git clone URL_DEL_REPOSITORIO
+```
+
+### 2. Ingresar a la carpeta del proyecto
+
+```bash
+cd quiz3
+```
+
+### 3. Instalar las dependencias
+
+```bash
+composer install
+```
+
+### 4. Configurar el entorno
+
+Copiar el archivo `env` y crear una copia llamada `.env`.
+
+En Windows PowerShell:
+
+```powershell
+Copy-Item env .env
+```
+
+Configurar en `.env` los datos de conexión a la base de datos:
+
+```ini
+database.default.hostname = localhost
+database.default.database = quiz3
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+```
+
+También configurar la dirección base de la aplicación:
+
+```ini
+app.baseURL = 'http://localhost:8080/'
+```
+
+**Nota:** Los datos de conexión pueden variar dependiendo de la configuración local de cada equipo.
+
+### 5. Crear la base de datos
+
+Desde phpMyAdmin, crear una base de datos llamada:
+
+```sql
+quiz3
+```
+
+### 6. Ejecutar las migraciones
+
+Desde la terminal, ejecutar:
+
+```bash
+php spark migrate
+```
+
+### 7. Insertar los datos iniciales
+
+Ejecutar los seeders:
+
+```bash
+php spark db:seed CarreraSeeder
+php spark db:seed CursoSeeder
+```
+
+### 8. Iniciar el servidor
+
+Ejecutar:
+
+```bash
+php spark serve
+```
+
+Abrir en el navegador:
+
+```text
+http://localhost:8080/
+```
+
+## Autor
+
+Proyecto desarrollado como parte de la evaluación Quiz 3 del curso Programación en Ambiente Web I.
