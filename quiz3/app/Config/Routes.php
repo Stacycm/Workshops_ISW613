@@ -3,7 +3,9 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
-$routes->get('/', 'Home::index');
+$routes->get('/', function () {
+    return view('inicio');
+});
 
 $routes->get('/cursos', 'CursoController::index');
 
