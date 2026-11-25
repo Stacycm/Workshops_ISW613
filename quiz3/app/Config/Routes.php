@@ -15,3 +15,10 @@ $routes->post('/cursos/actualizar/(:num)', 'CursoController::actualizar/$1');
 
 $routes->post('/cursos/eliminar/(:num)', 'CursoController::eliminar/$1');
 
+
+$routes->get('/matricula', 'MatriculaController::index');
+
+$routes->post('/matricula/guardar', 'MatriculaController::guardar');
+
+$routes->get('/matricula/comprobante/(:num)', 'MatriculaController::comprobante/$1');
+
